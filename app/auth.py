@@ -12,3 +12,13 @@ def create_token(username:str):
     return token
 
 
+def verify_token(token: str = Header(...)):
+    try:
+        paylod = jwt.decode(token, SECRET_KEY,algorithms=[ALGORITHM])
+        return paylod
+    except:
+        raise HTTPException(status_code=400, detail="le token est invalide")
+    
+
+
+    
