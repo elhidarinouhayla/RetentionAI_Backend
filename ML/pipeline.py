@@ -58,8 +58,8 @@ def train_with_grid_search(model_type, num_columns, cat_columns, data):
     }
 
     param_grid_lr = {
-        "model__penalty": ["l1", "l2"],
-        "model__max_iter": [200, 500, 1000],
+        "model__l1_ratio": [0],
+        "model__C": [0.01, 0.1, 1, 10],
         "feature_selection__k": [3, 5, "all"]
     } 
 
@@ -77,6 +77,11 @@ def train_with_grid_search(model_type, num_columns, cat_columns, data):
     grid_search.fit(x_train, y_train)
 
     best_model = grid_search.best_estimator_
+
+    if model_type == "logistic_regression":
+        joblib.dump(best_model, "logistic_regression.dump")
+
+    
 
     y_pred = best_model.predict(x_test)
 
