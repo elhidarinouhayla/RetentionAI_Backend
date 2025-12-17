@@ -1,6 +1,7 @@
 from app.database import Base
 from pydantic import BaseModel
-from sqlalchemy import String, Integer, Column
+from sqlalchemy import String, Integer, Column, DateTime
+from datetime import datetime
 
 
 
@@ -10,3 +11,5 @@ class User(Base):
     username = Column(String, nullable=False )
     password = Column(String, nullable=False)
     email = Column(String, nullable=False)
+    passwordhash = Column(String, nullable=False)
+    created_at= Column(DateTime, default= datetime.now )
