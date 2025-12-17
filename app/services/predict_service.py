@@ -3,7 +3,7 @@ import pandas as pd
 
 model = joblib.load("ML/logistic_regression.pkl")
 
-def predict(data):
+def predict_probability(data):
 
     df =  pd.DataFrame([data])
     return model.predict_proba(df)[0][0]
