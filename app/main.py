@@ -67,4 +67,10 @@ def predict(data: RHRequest, user: dict=Depends(verify_token)):
 
     result = predict_probability(data)
 
-    return {"Churn_probability": float(result)}
+    if result >= 0.50:
+        prediction = "RISCk_ELLEVE"
+    else:
+        prediction = "RISCK_FAIBLE"
+
+    return {"Churn_probability": float(result),
+            "prediction": prediction}
