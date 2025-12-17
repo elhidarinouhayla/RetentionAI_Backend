@@ -2,7 +2,7 @@ from fastapi import FastAPI,HTTPException,Depends
 from .database import Base,engine,get_db
 from sqlalchemy.orm import session
 from models.schemas import UserCreate, UserResponse,  UserVerify, output_ml, RHRequest
-from models.models import User
+from app.models.models import User
 from .auth import create_token, verify_token, hache_password, verify_password
 from app.services.predict_service import predict_probability
 from fastapi.middleware.cors import CORSMiddleware
