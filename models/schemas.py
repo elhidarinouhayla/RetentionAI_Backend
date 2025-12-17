@@ -56,3 +56,4 @@ class RHRequest(BaseModel):
 
 class output_ml(BaseModel):
     Churn_probability : float
+    prediction : str
