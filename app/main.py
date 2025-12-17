@@ -5,11 +5,12 @@ from models.schemas import UserCreate, UserResponse,  UserVerify
 from models.models import User
 from .auth import create_token, verify_token, hache_password, verify_password
 from fastapi.middleware.cors import CORSMiddleware
+import joblib
 
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
-
+model = joblib.load("./ML/logistic_regression.pkl")
 
 app.add_middleware(
   CORSMiddleware,
