@@ -5,7 +5,8 @@ model = joblib.load("ML/logistic_regression.pkl")
 
 def predict_probability(data):
 
-    df =  pd.DataFrame([data])
+    df =  pd.DataFrame([data.dict()])
+    
     return model.predict_proba(df)[0][0]
 
 # test = {
