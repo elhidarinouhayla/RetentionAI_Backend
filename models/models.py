@@ -17,7 +17,7 @@ class User(Base):
 
 
 class Prediction(Base):
-    __tablename__="predictiob_history"
+    __tablename__="prediction_history"
     id = Column(Integer, primary_key=True, index=True)
     timestamp = Column(DateTime, default= datetime.now )
     user_id = Column(String, nullable=False )
