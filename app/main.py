@@ -1,16 +1,19 @@
 from fastapi import FastAPI,HTTPException,Depends
 from .database import Base,engine,get_db
 from sqlalchemy.orm import session
-from models.schemas import UserCreate, UserResponse,  UserVerify
+from models.schemas import UserCreate, UserResponse,  UserVerify, output_ml, RHRequest
 from models.models import User
 from .auth import create_token, verify_token, hache_password, verify_password
+from app.services.predict_service import predict_probability
 from fastapi.middleware.cors import CORSMiddleware
 import joblib
+import pandas as pd
 
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
-model = joblib.load("./ML/logistic_regression.pkl")
+
+model = joblib.load("ML/logistic_regression.pkl")
 
 app.add_middleware(
   CORSMiddleware,
@@ -57,4 +60,11 @@ def login(user:UserVerify, db: session=Depends(get_db)):
 
 
 
+#  creation d'endpoint predict en utilisant le modele du ml
 
+@app.post("/predict", response_model=output_ml)
+def predict(data: RHRequest, user: dict=Depends(verify_token)):
+
+    result = predict_probability(data)
+
+    return {"Churn_probability": float(result)}
