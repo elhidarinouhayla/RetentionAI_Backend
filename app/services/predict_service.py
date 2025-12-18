@@ -7,7 +7,7 @@ def predict_probability(data):
 
     df =  pd.DataFrame([data.dict()])
     
-    return model.predict_proba(df)[0][0]
+    return model.predict_proba(df)[0][1]
 
 # risque eleve
 # {
