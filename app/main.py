@@ -90,7 +90,7 @@ def generate_retention_plan(data: RHRequest, user: dict = Depends(verify_token))
     risck_level = prediction_result["prediction"]
 
     if risck_level != "RISCk_ELLEVE":
-        return {"Aucun plan requis, reteintion faible"}
+        return {"retention_plan":[ "Aucun plan requis, reteintion faible"]}
     
     else:
         result = retention_gemini(probability, 
@@ -99,14 +99,3 @@ def generate_retention_plan(data: RHRequest, user: dict = Depends(verify_token))
 
 
 
-
-    # result = retention_gemini(data.Churn_probability, 
-    #                             data.prediction)
-    
-    # if data.prediction == "RISCk_ELLEVE":
-    #     return {"retention_plan": result}
-        
-    
-    # elif data.prediction == "RISCk_FAIBLE":
-        
-    #     return {"retention_plan": "Aucun plan requis, reteintion faible"}
