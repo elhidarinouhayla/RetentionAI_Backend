@@ -1,10 +1,11 @@
 from fastapi import FastAPI,HTTPException,Depends
-from .database import Base,engine,get_db
+from app.database import Base,engine,get_db
 from sqlalchemy.orm import session
-from models.schemas import UserCreate, UserResponse,  UserVerify, output_ml, RHRequest
-from app.models.models import User
+from app.models.schemas import UserCreate, UserResponse,  UserVerify, output_ml, RHRequest, output_gemini
+from app.models.models import User, Prediction
 from .auth import create_token, verify_token, hache_password, verify_password
 from app.services.predict_service import predict_probability
+from app.services.gemini_service import retention_gemini
 from fastapi.middleware.cors import CORSMiddleware
 import joblib
 import pandas as pd
@@ -65,12 +66,47 @@ def login(user:UserVerify, db: session=Depends(get_db)):
 @app.post("/predict", response_model=output_ml)
 def predict(data: RHRequest, user: dict=Depends(verify_token)):
 
-    result = predict_probability(data)
+    risck_level = predict_probability(data)
 
-    if result >= 0.50:
+    if risck_level >= 0.50:
         prediction = "RISCk_ELLEVE"
     else:
         prediction = "RISCK_FAIBLE"
 
-    return {"Churn_probability": float(result),
+    return {"Churn_probability": float(risck_level),
             "prediction": prediction}
+
+
+
+
+#  creation d'endpoint generate-retention-plan en utilisant le model de gemini
+
+@app.post("/generate_retention_plan", response_model=output_gemini)
+def generate_retention_plan(data: RHRequest, user: dict = Depends(verify_token)):
+
+    prediction_result = predict(data, user)
+
+    probability = prediction_result["Churn_probability"]
+    risck_level = prediction_result["prediction"]
+
+    if risck_level != "RISCk_ELLEVE":
+        return {"Aucun plan requis, reteintion faible"}
+    
+    else:
+        result = retention_gemini(probability, 
+                                risck_level)
+        return {"retention_plan": result}
+
+
+
+
+    # result = retention_gemini(data.Churn_probability, 
+    #                             data.prediction)
+    
+    # if data.prediction == "RISCk_ELLEVE":
+    #     return {"retention_plan": result}
+        
+    
+    # elif data.prediction == "RISCk_FAIBLE":
+        
+    #     return {"retention_plan": "Aucun plan requis, reteintion faible"}
