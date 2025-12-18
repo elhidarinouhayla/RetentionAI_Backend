@@ -2,14 +2,15 @@ import joblib
 import pandas as pd
 
 model = joblib.load("ML/logistic_regression.pkl")
-
+# print(model.classes_)
 def predict_probability(data):
 
     df =  pd.DataFrame([data.dict()])
     
     return model.predict_proba(df)[0][0]
 
-# test = {
+# risque eleve
+# {
 #   "Gender": "Male",
 #   "Age": 32,
 #   "Department": "Sales",
@@ -34,6 +35,35 @@ def predict_probability(data):
 #   "YearsInCurrentRole": 3,
 #   "YearsWithCurrManager": 2
 # }
+
+
+# risque faible
+# {
+#   "Gender": "Female",
+#   "Age": 29,
+#   "Department": "Research & Development",
+#   "JobRole": "Research Scientist",
+#   "MonthlyIncome": 5200,
+#   "YearsAtCompany": 6,
+#   "JobSatisfaction": 4,
+#   "WorkLifeBalance": 4,
+#   "OverTime": "No",
+#   "BusinessTravel": "Travel_Frequently",
+#   "Education": 4,
+#   "EducationField": "Life Sciences",
+#   "EnvironmentSatisfaction": 4,
+#   "JobInvolvement": 4,
+#   "JobLevel": 2,
+#   "MaritalStatus": "Married",
+#   "PercentSalaryHike": 15,
+#   "PerformanceRating": 4,
+#   "RelationshipSatisfaction": 4,
+#   "StockOptionLevel": 2,
+#   "TotalWorkingYears": 10,
+#   "YearsInCurrentRole": 4,
+#   "YearsWithCurrManager": 4
+# }
+
 
 # print(predict(test))
 
