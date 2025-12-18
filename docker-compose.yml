@@ -34,7 +34,7 @@ services:
 
   # Service Frontend
   frontend:
-    build: C:/Users/hp/Desktop/Plateforme-d-Orchestration-IA-Frontend/frontend
+    build: C:/Users/hp/Desktop/RetentionAI_Frontend/frontend
     ports:
       - "3001:3000"
     restart: always
