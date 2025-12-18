@@ -1,5 +1,4 @@
 from pydantic import BaseModel, Field
-from typing import Literal
 
 
 # shema pydantic creation du user
@@ -66,4 +65,4 @@ class output_ml(BaseModel):
 # shema pydantic de la sortie du model de gemini 
 
 class output_gemini(BaseModel):
-    retention_plan : list
+    retention_plan : list 
