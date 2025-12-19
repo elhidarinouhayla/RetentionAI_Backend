@@ -11,29 +11,29 @@ def predict_probability(data):
 
 # risque eleve
 # {
-#   "Gender": "Male",
-#   "Age": 32,
+#   "Gender": "Female",
+#   "Age": 26,
 #   "Department": "Sales",
-#   "JobRole": "Sales Executive",
-#   "MonthlyIncome": 4500,
-#   "YearsAtCompany": 5,
-#   "JobSatisfaction": 3,
-#   "WorkLifeBalance": 3,
+#   "JobRole": "Sales Representative",
+#   "MonthlyIncome": 2800,
+#   "YearsAtCompany": 1,
+#   "JobSatisfaction": 1,
+#   "WorkLifeBalance": 1,
 #   "OverTime": "Yes",
-#   "BusinessTravel": "Travel_Rarely",
-#   "Education": 3,
+#   "BusinessTravel": "Travel_Frequently",
+#   "Education": 2,
 #   "EducationField": "Marketing",
-#   "EnvironmentSatisfaction": 3,
-#   "JobInvolvement": 3,
-#   "JobLevel": 2,
+#   "EnvironmentSatisfaction": 1,
+#   "JobInvolvement": 1,
+#   "JobLevel": 1,
 #   "MaritalStatus": "Single",
-#   "PercentSalaryHike": 12,
+#   "PercentSalaryHike": 11,
 #   "PerformanceRating": 3,
-#   "RelationshipSatisfaction": 3,
-#   "StockOptionLevel": 1,
-#   "TotalWorkingYears": 8,
-#   "YearsInCurrentRole": 3,
-#   "YearsWithCurrManager": 2
+#   "RelationshipSatisfaction": 1,
+#   "StockOptionLevel": 0,
+#   "TotalWorkingYears": 3,
+#   "YearsInCurrentRole": 1,
+#   "YearsWithCurrManager": 0
 # }
 
 

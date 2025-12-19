@@ -74,7 +74,6 @@ def predict(data: RHRequest, user: dict=Depends(verify_token)):
     else:
         prediction = "RISCK_FAIBLE"
 
-    # ✅ CORRECTION : Utiliser "churn_probability" en minuscule
     return {"churn_probability": float(risck_level),
             "prediction": prediction}
 

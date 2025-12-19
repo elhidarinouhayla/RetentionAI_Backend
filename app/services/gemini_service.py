@@ -12,15 +12,15 @@ def retention_gemini(probability, prediction):
     prompt = f"""
     Contexte : ce salarié a un risque élevé de "churn_probability" de départ selon le modèle ML.  
 
-    Tache : propose 3 actions concrètes et personnalisées pour le retenir dans l'entreprise,
+    Tache : propose 3 simples actions concrètes et personnalisées pour le retenir dans l'entreprise,
     en tenant compte de son role, sa satisfaction, sa performance et son équilibre vie professionnelle/personnelle.  
     Rédige les actions de façon claire et opérationnelle pour un manager RH.
 
     exemple:
-     "retention_plan": [
-                    "Proposer 2 jours de télétravail",
-                    "Réévaluer la charge de déplacement",
-                    "Plan de formation personnalisé"
+     "retention_plan" : [
+                    "- Proposer 2 jours de télétravail",
+                    "- Réévaluer la charge de déplacement",
+                    "- Plan de formation personnalisé"
                 ]
     """
     
