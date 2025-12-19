@@ -36,7 +36,7 @@ services:
   frontend:
     build: C:/Users/hp/Desktop/RetentionAI_Frontend/frontend
     ports:
-      - "3001:3000"
+      - "300:3000"
     restart: always
     depends_on:
       - app
