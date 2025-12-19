@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
 
-# shema pydantic creation du user
+# schema pydantic creation du user
 class UserCreate(BaseModel):
     username : str
     password : str
@@ -18,51 +18,51 @@ class UserResponse(UserCreate):
 
 
 
-# shema pydantic d'entre du model de ml
+# schema pydantic d'entre du model de ml
 
 class RHRequest(BaseModel):
     Gender: str
-    Age: int = Field(..., ge=1, le=120)
+    Age: int 
 
     Department: str
     JobRole: str
 
-    MonthlyIncome: int = Field(..., ge=0)
-    YearsAtCompany: int = Field(..., ge=0)
+    MonthlyIncome: int 
+    YearsAtCompany: int 
 
-    JobSatisfaction: int = Field(..., ge=1, le=4)
-    WorkLifeBalance: int = Field(..., ge=1, le=4)
+    JobSatisfaction: int 
+    WorkLifeBalance: int 
     OverTime: str
     BusinessTravel: str
 
-    Education: int = Field(..., ge=1, le=5)
+    Education: int 
     EducationField: str
 
-    EnvironmentSatisfaction: int = Field(..., ge=1, le=4)
-    JobInvolvement: int = Field(..., ge=1, le=4)
+    EnvironmentSatisfaction: int 
+    JobInvolvement: int 
 
-    JobLevel: int = Field(..., ge=0)
+    JobLevel: int 
     MaritalStatus: str
 
-    PercentSalaryHike: int = Field(..., ge=0)
-    PerformanceRating: int = Field(..., ge=3, le=4)
+    PercentSalaryHike: int 
+    PerformanceRating: int 
 
-    RelationshipSatisfaction: int = Field(..., ge=1, le=4)
+    RelationshipSatisfaction: int 
 
-    StockOptionLevel: int = Field(..., ge=0)
-    TotalWorkingYears: int = Field(..., ge=0)
-    YearsInCurrentRole: int = Field(..., ge=0)
-    YearsWithCurrManager: int = Field(..., ge=0)
+    StockOptionLevel: int 
+    TotalWorkingYears: int 
+    YearsInCurrentRole: int 
+    YearsWithCurrManager: int 
 
-# shema pydantic de la sortie du model de ml
+# schema pydantic de la sortie du model de ml
 
 class output_ml(BaseModel):
-    Churn_probability : float
-    prediction : str
+    churn_probability: float  
+    prediction: str
 
 
 
-# shema pydantic de la sortie du model de gemini 
+# schema pydantic de la sortie du model de gemini 
 
 class output_gemini(BaseModel):
     retention_plan : list 
