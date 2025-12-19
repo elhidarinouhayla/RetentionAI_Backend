@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  # Service PostgreSQL
+  db:
+    image: postgres:15
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: USER
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: DATABASE
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Service FastAPI
+  app:
+    build: .
+    ports:
+      - "8001:8000"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      HOST: db
+      PORT: 5432
+      DATABASE: DATABASE
+      USER: USER
+      PASSWORD: 123
+    volumes:
+      - .:/app
+    command: sh -c "sleep 10 && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
+  # Service Frontend
+  frontend:
+    build: C:/Users/hp/Desktop/RetentionAI_Frontend/frontend
+    ports:
+      - "300:3000"
+    restart: always
+    depends_on:
+      - app
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8001"
+
+volumes:
+  postgres_data:
