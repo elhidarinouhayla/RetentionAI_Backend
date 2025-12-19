@@ -16,6 +16,7 @@ Base.metadata.create_all(bind=engine)
 
 model = joblib.load("ML/logistic_regression.pkl")
 
+
 app.add_middleware(
   CORSMiddleware,
   allow_origins=["*"],
