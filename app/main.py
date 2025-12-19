@@ -8,7 +8,7 @@ from app.services.predict_service import predict_probability
 from app.services.gemini_service import retention_gemini
 from fastapi.middleware.cors import CORSMiddleware
 import joblib
-import pandas as pd
+
 
 
 app = FastAPI()
@@ -73,7 +73,8 @@ def predict(data: RHRequest, user: dict=Depends(verify_token)):
     else:
         prediction = "RISCK_FAIBLE"
 
-    return {"Churn_probability": float(risck_level),
+    # ✅ CORRECTION : Utiliser "churn_probability" en minuscule
+    return {"churn_probability": float(risck_level),
             "prediction": prediction}
 
 
@@ -86,7 +87,7 @@ def generate_retention_plan(data: RHRequest, user: dict = Depends(verify_token))
 
     prediction_result = predict(data, user)
 
-    probability = prediction_result["Churn_probability"]
+    probability = prediction_result["churn_probability"]
     risck_level = prediction_result["prediction"]
 
     if risck_level != "RISCk_ELLEVE":
