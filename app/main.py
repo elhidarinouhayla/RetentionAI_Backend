@@ -7,14 +7,14 @@ from .auth import create_token, verify_token, hache_password, verify_password
 from app.services.predict_service import predict_probability
 from app.services.gemini_service import retention_gemini
 from fastapi.middleware.cors import CORSMiddleware
-import joblib
+
 
 
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
 
-model = joblib.load("ML/logistic_regression.pkl")
+
 
 
 app.add_middleware(
@@ -45,7 +45,7 @@ def create_user(user:UserCreate, db: session=Depends(get_db)):
 
 
 
-# verifier l'identifiant et retourner token
+# verifier l'identifiant et encoder token
 @app.post("/login")
 def login(user:UserVerify, db: session=Depends(get_db)):
 
