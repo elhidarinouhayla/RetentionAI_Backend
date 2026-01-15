@@ -6,9 +6,8 @@ model = joblib.load("ML/logistic_regression.pkl")
 def predict_probability(data):
 
     df =  pd.DataFrame([data.dict()])
-    
-    return model.predict_proba(df)[0][1]
-
+    probability = model.predict_proba(df)[0][1]
+    return round(probability, 2)
 # risque eleve
 # {
 #   "Gender": "Female",
@@ -66,4 +65,6 @@ def predict_probability(data):
 
 
 # print(predict(test))
+
+
 
